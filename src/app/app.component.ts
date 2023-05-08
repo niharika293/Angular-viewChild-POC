@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ViewChildComponent } from './view-child/view-child.component';
 
 @Component({
@@ -13,6 +13,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild(ViewChildComponent)
   vc!: ViewChildComponent;
+
+  @ViewChildren(ViewChildComponent)
+  vcList !: QueryList<ViewChildComponent>;
   
   constructor(){}
 
@@ -25,6 +28,8 @@ export class AppComponent implements OnInit, AfterViewInit {
    console.log("printing viewchild ngAfterViewInit innerHTML", this.p1.nativeElement.innerHTML);
    this.vc.isViewPresent = true;
    console.log("isViewPresent set up by parent ::", this.vc.isViewPresent);
+  console.log("Calling instance of viewChild", this.vc);
+  console.log("calling instance of viewChildren", this.vcList);
   }
   title = 'angular-viewchild-poc';
 }
